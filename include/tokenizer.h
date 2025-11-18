@@ -69,8 +69,10 @@ token_t get_next_token(char **input_ptr);
 token_list_t create_token_list(void);
 token_list_t tokenize_input(char *input);
 
-token_t peek(token_list_t *list);
+token_t peek(const token_list_t *list);
 token_t advance(token_list_t *list);
+
+void reset_pointer(void);
 
 int match(token_list_t *list, token_type_t type);
 int is_operator(token_type_t type);
