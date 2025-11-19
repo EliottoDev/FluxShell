@@ -1,5 +1,8 @@
 #include <lib.h>
 
+#include "parser.h"
+#include "tokenizer.h"
+
 int main(void) {
 
 #ifndef PROJECT_VERSION
@@ -47,6 +50,14 @@ int main(void) {
                    i,
                    tokens.items[i].type,
                    tokens.items[i].value ? tokens.items[i].value : "NULL");
+        }
+
+        if (tokens.count > 0) {
+            node_t *ast = parse(&tokens);
+
+            print_ast(ast);
+
+            free_ast(ast);
         }
 
         free_token_list(&tokens);

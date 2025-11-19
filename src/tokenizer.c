@@ -6,6 +6,8 @@
 
 // test: @(*.c) -> filter($ !%= "test_")  -> [ compile $ -> link $ ] !> print "Error while compiling and linking" -> print "Compilation and linking done"
 
+static size_t list_pointer = 0;
+
 token_t get_next_token(char **input_ptr) {
     char *current = *input_ptr;
     token_t token = {0};
@@ -177,7 +179,6 @@ token_t get_next_token(char **input_ptr) {
             }
             if (isdigit(*current)) {
                 char *start = current;
-                bool has_decimal = false;
                 while (isdigit(*current) || *current == '_' || *current == '.') current++;
 
                 const uint16_t length = current - start;
@@ -239,4 +240,32 @@ token_list_t tokenize_input(char *input) {
     }
 
     return list;
+}
+
+token_t peek(const token_list_t *list) {
+    if (list_pointer >= list->count)
+        return (token_t){TOKEN_EOF, NULL};
+    return list->items[list_pointer];
+}
+
+token_t advance(token_list_t *list) {
+    if (list_pointer < list->count)
+        list_pointer++;
+    return list->items[list_pointer - 1];
+}
+
+void reset_pointer(void) {
+    list_pointer = 0;
+}
+
+int match(token_list_t *list, token_type_t type) {
+    if (peek(list).type == type) {
+        advance(list);
+        return 1;
+    }
+    return 0;
+}
+
+int is_operator(token_type_t type) {
+    return type >= TOKEN_GREATER_THAN && type <= TOKEN_MINUS;
 }

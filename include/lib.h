@@ -2,20 +2,19 @@
 // Created by elias on 18/11/2025.
 //
 
-#ifndef SHOT_LIB_H
-#define SHOT_LIB_H
+#ifndef FLUX_LIB_H
+#define FLUX_LIB_H
 
 #include <stdio.h>
 #include <string.h>
-#include <utils.h>
-#include <constants.h>
 #include <stdlib.h>
-#include <command.h>
-#include <tokenizer.h>
 #include <stdint.h>
 #include <ctype.h>
 #include <stdbool.h>
 #include <config.h>
+
+#include <utils.h>
+#include <constants.h>
 
 #ifdef _WIN32
     #include <direct.h>
@@ -28,4 +27,4 @@
     #define getcwd getcwd
 #endif
 
-#endif //SHOT_LIB_H
+#endif //FLUX_LIB_H
