@@ -1,7 +1,11 @@
 #include <lib.h>
 
+#include "executor.h"
 #include "parser.h"
 #include "tokenizer.h"
+
+#define SHOW_TOKENS false
+#define SHOW_AST false
 
 int main(void) {
 
@@ -12,36 +16,19 @@ int main(void) {
 
     char console_input[MAX_USER_INPUT];
 
-    char raw_cwd[FILENAME_MAX];
-
-    if (getcwd(raw_cwd, sizeof(raw_cwd)) == NULL) {
-        printf("Error getting current working directory\n");
-        return 1;
-    }
-
-    const char *home_dir = NULL;
-    get_home_directory(&home_dir);
-
-    if (home_dir == NULL) {
-        printf("Error getting home directory\n");
-        return 1;
-    }
-
-    char *cwd = sreplace_str(raw_cwd, home_dir, "~");
-    creplace_str(cwd, '\\', '/');
+    const env_t *session_env = get_env();
 
     printf("Flux Shell v%s\n\n", PROJECT_VERSION);
 
     while (1) {
-        printf("%s %s", cwd, PREFIX);
+        char repr_cwd[FILENAME_MAX];
+        get_representable_path(session_env->cwd, repr_cwd);
+
+        printf("%s %s", repr_cwd, PREFIX);
 
         fflush(stdout);
 
         s_gets(console_input, MAX_USER_INPUT);
-
-        if (strcmp(console_input, "exit") == 0) {
-            break;
-        }
 
         token_list_t tokens = tokenize_input(console_input);
         if (SHOW_TOKENS) {
