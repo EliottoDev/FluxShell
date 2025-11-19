@@ -1,5 +1,8 @@
 #include <lib.h>
 
+#include "parser.h"
+#include "tokenizer.h"
+
 int main(void) {
 
 #ifndef PROJECT_VERSION

@@ -7,15 +7,14 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <utils.h>
-#include <constants.h>
 #include <stdlib.h>
-#include <command.h>
-#include <tokenizer.h>
 #include <stdint.h>
 #include <ctype.h>
 #include <stdbool.h>
 #include <config.h>
+
+#include <utils.h>
+#include <constants.h>
 
 #ifdef _WIN32
     #include <direct.h>
