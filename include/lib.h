@@ -2,8 +2,8 @@
 // Created by elias on 18/11/2025.
 //
 
-#ifndef SHOT_LIB_H
-#define SHOT_LIB_H
+#ifndef FLUX_LIB_H
+#define FLUX_LIB_H
 
 #include <stdio.h>
 #include <string.h>
@@ -28,4 +28,4 @@
     #define getcwd getcwd
 #endif
 
-#endif //SHOT_LIB_H
+#endif //FLUX_LIB_H

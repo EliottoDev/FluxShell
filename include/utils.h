@@ -2,8 +2,8 @@
 // Created by elias on 18/11/2025.
 //
 
-#ifndef SHOT_UTILS_H
-#define SHOT_UTILS_H
+#ifndef FLUX_UTILS_H
+#define FLUX_UTILS_H
 
 #include <lib.h>
 
@@ -14,4 +14,4 @@ void get_home_directory(const char **out_homedir);
 char* strndup(const char* s, size_t n);
 void remove_char(char *str, char target);
 
-#endif //SHOT_UTILS_H
+#endif //FLUX_UTILS_H
