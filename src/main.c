@@ -49,6 +49,14 @@ int main(void) {
                    tokens.items[i].value ? tokens.items[i].value : "NULL");
         }
 
+        if (tokens.count > 0) {
+            node_t *ast = parse(&tokens);
+
+            print_ast(ast);
+
+            free_ast(ast);
+        }
+
         free_token_list(&tokens);
     }
 

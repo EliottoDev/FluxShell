@@ -179,7 +179,6 @@ token_t get_next_token(char **input_ptr) {
             }
             if (isdigit(*current)) {
                 char *start = current;
-                bool has_decimal = false;
                 while (isdigit(*current) || *current == '_' || *current == '.') current++;
 
                 const uint16_t length = current - start;
