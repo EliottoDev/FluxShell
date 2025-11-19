@@ -44,20 +44,27 @@ int main(void) {
         }
 
         token_list_t tokens = tokenize_input(console_input);
-
-        for (size_t i = 0; i < tokens.count; i++) {
-            printf("[%zu] Type: 0x%01x, Value: %s\n",
-                   i,
-                   tokens.items[i].type,
-                   tokens.items[i].value ? tokens.items[i].value : "NULL");
+        if (SHOW_TOKENS) {
+            for (size_t i = 0; i < tokens.count; i++) {
+                printf("[%zu] Type: 0x%01x, Value: %s\n",
+                       i,
+                       tokens.items[i].type,
+                       tokens.items[i].value ? tokens.items[i].value : "NULL");
+            }
         }
 
         if (tokens.count > 0) {
             node_t *ast = parse(&tokens);
 
-            print_ast(ast);
+            if (ast != NULL) {
+                if (SHOW_AST) {
+                    printf("Debug: AST generated:\n");
+                    print_ast(ast);
+                }
 
-            free_ast(ast);
+                execute(ast);
+                free_ast(ast);
+            }
         }
 
         free_token_list(&tokens);
