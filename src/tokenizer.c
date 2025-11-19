@@ -4,7 +4,7 @@
 
 #include "tokenizer.h"
 
-// test: @(*.c) -> filter($ !%= "test_")  -> [ compile $ -> link $ ] !> print "Error while compiling and linking" -> print "Compilation and linking done"
+// test: @(*.c) -> filter($ !%= "test_") -> print
 
 static size_t list_pointer = 0;
 
@@ -71,6 +71,7 @@ token_t get_next_token(char **input_ptr) {
                 token.value = strndup("<", 1);
                 current++;
             }
+            break;
         case '!':
             if (*(current + 1) == '=') {
                 token.type = TOKEN_NOT_EQUALS;

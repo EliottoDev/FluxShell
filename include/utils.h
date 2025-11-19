@@ -10,8 +10,10 @@
 void s_gets(char *str, int n);
 void creplace_str(char *str, char old_char, char new_char);
 char *sreplace_str(char *source, char *orig, char *rep);
-void get_home_directory(const char **out_homedir);
+void get_home_directory(char **out_homedir);
 char* strndup(const char* s, size_t n);
 void remove_char(char *str, char target);
+void get_representable_path(char *path, char *out_path);
+int list_directory(const char *raw_path);
 
 #endif //FLUX_UTILS_H

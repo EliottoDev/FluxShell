@@ -63,8 +63,6 @@ int main(void) {
         free_token_list(&tokens);
     }
 
-
-    free(cwd);
     printf("EOP Signal\n");
     fgetc(stdin);
     return 0;

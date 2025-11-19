@@ -1,4 +1,12 @@
-sources = files('main.c', 'utils.c', 'tokenizer.c', 'parser.c')
+sources = files(
+    'main.c',
+    'utils.c',
+    'tokenizer.c',
+    'parser.c',
+    'builtins.c',
+    'executor.c',
+    'env.c'
+)
 
 flux_exe = executable('flux',
                       sources,
